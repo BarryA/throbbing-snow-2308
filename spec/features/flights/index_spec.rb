@@ -4,8 +4,8 @@ RSpec.describe 'As a visitor', type: :feature do
   before(:each) do
     @american = Airline.create(name: "Southwest")
 
-    @american_1 = @american.flights.create(number: "AA1", date: "01/17/24", time: "1200", departure_city: "Dallas", arrival_city: "Denver")
-    @american_2 = @american.flights.create(number: "AA2", date: "01/18/24", time: "2200", departure_city: "Seattle", arrival_city: "Portland")
+    @american_1 = @american.flights.create(number: "AA1", date: "01/17/24", departure_city: "Dallas", arrival_city: "Denver")
+    @american_2 = @american.flights.create(number: "AA2", date: "01/18/24", departure_city: "Seattle", arrival_city: "Portland")
 
     @passenger_1 = Passenger.create(name: 'Barry Allahyar', age: '36')
     @passenger_2 = Passenger.create(name: 'Bobby Allahyar', age: '40')
@@ -49,7 +49,6 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to have_content("Flight Details")
       expect(page).to have_content("Flight Number: #{@american_1.number}")
       expect(page).to have_content("Date: #{@american_1.date}")
-      expect(page).to have_content("Time: #{@american_1.time}")
       expect(page).to have_content("Departure City: #{@american_1.departure_city}")
       expect(page).to have_content("Arrival City: #{@american_1.arrival_city}")
 
@@ -58,7 +57,6 @@ RSpec.describe 'As a visitor', type: :feature do
       expect(page).to have_content("Flight Details")
       expect(page).to have_content("Flight Number: #{@american_2.number}")
       expect(page).to have_content("Date: #{@american_2.date}")
-      expect(page).to have_content("Time: #{@american_2.time}")
       expect(page).to have_content("Departure City: #{@american_2.departure_city}")
       expect(page).to have_content("Arrival City: #{@american_2.arrival_city}")
     end
