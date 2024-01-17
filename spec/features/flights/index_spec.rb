@@ -42,27 +42,27 @@ RSpec.describe 'As a visitor', type: :feature do
     it 'I see the name of the airline the flight belongs to' do
       visit "/flights/#{@american_1.id}"
 
-      expect(page).to have_content(@american_1.airline)
+      expect(page).to have_content(@american_1.airline.name)
 
       visit "/flights/#{@american_2.id}"
 
-      expect(page).to have_content(@american_2.airline)
+      expect(page).to have_content(@american_2.airline.name)
     end
 
     it 'I see the names of all of the passengers on the flight' do
       visit "/flights/#{@american_1.id}"
 
       expect(page).to have_content("Passengers On This Flight")
-      expect(page).to have_content("#{@passenger_1}")
-      expect(page).to have_content("#{@passenger_2}")
-      expect(page).to have_content("#{@passenger_3}")
+      expect(page).to have_content("#{@passenger_1.name}")
+      expect(page).to have_content("#{@passenger_2.name}")
+      expect(page).to have_content("#{@passenger_3.name}")
 
       visit "/flights/#{@american_2.id}"
 
       expect(page).to have_content("Passengers On This Flight")
-      expect(page).to have_content("#{@passenger_4}")
-      expect(page).to have_content("#{@passenger_5}")
-      expect(page).to have_content("#{@passenger_6}")
+      expect(page).to have_content("#{@passenger_4.name}")
+      expect(page).to have_content("#{@passenger_5.name}")
+      expect(page).to have_content("#{@passenger_6.name}")
     end
   end
 end
