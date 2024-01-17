@@ -18,8 +18,32 @@ RSpec.describe 'As a visitor', type: :feature do
     @american_2.passengers << [@passenger_4, @passenger_5, @passenger_6]
   end
 
-  describe "When I visit a flights index page ('/flights/:id')" do
-    it "I see the flight's number, date, time, departure city, and arrival city" do
+  describe "When I visit a flights index page ('/flights/)" do
+    it "I see a list of all flight numbers" do
+      visit "/flights/"
+
+      expect(page).to have_content(@american_1.number)
+      expect(page).to have_content(@american_2.number)
+    end
+
+    it "And I see the name of the Airline of that flight" do
+      visit "/flights/"
+
+      expect(page).to have_content(@american_1.airline.name)
+      expect(page).to have_content(@american_2.airline.name)
+    end
+
+    it "And under each flight number I see the names of all that flight's passengers" do
+      visit "/flights/"
+
+      expect(page).to have_content("#{@passenger_1.name}")
+      expect(page).to have_content("#{@passenger_2.name}")
+      expect(page).to have_content("#{@passenger_3.name}")
+    end
+  end
+
+  describe "flight's show page" do
+    it "List flight's details'" do
       visit "/flights/#{@american_1.id}"
 
       expect(page).to have_content("Flight Details")
