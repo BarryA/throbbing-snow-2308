@@ -1,0 +1,17 @@
+<h3>Flight Details</h3>
+
+<% @flights.each do |flight| %>
+  <section id = "flight-<%=flight.id%>">
+    Flight Number: <%= link_to flight.name, "/flights/#{flight.id}" %> 
+     Airline: <%= @flight.airline.name %><br>
+  <p>
+  Passengers
+  <ul>
+    <% @flight.passengers.each do |passenger| %>
+      <li><%= passenger.name %></li>
+    <% end %>
+  </ul>
+</p>
+
+  </section>
+<% end %>
